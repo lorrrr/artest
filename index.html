@@ -7,51 +7,29 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
 
   </head>
-  <body>
+  <body onclick="play()"">
     <a-scene mindar-image="imageTargetSrc: https://lorrrr.github.io/artest/marker/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
     <img id="card" src="https://lorrrr.github.io/artest/newimage.jpg" />
-    <video id="vid" muted controls loop="true" src="https://lorrrr.github.io/artest/comp.mp4"></video>
+    <video id="video" muted controls loop="true" src="https://lorrrr.github.io/artest/comp.mp4"></video>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <a-entity mindar-image-target="targetIndex: 0">
         <!-- <a-plane src="#card" position="0 0 0" height="1.266" width="1" rotation="0 0 0"></a-plane> -->
-        <a-video src="#vid" position="0 0 0" height="1.266" width="1" rotation="0 0 0"></a-video>
+        <a-video src="#video" position="0 0 0" height="1.266" width="1" rotation="0 0 0"></a-video>
 
       </a-entity>
     </a-scene>
     <script>
+      var body = document.querySelector("body");
+      var video = document.getElementById("video");
+      function play() {
 
-        AFRAME.registerComponent('vidhandler', {
-            init: function() {
-                this.toggle = false;
-                this.vid = document.querySelector("#vid");
-                this.vid.pause();
-            },
-            tick: function() {
-                if (this.el.object3D.visible == true) {
-                    if (!this.toggle) {
-                        this.toggle = true;
-                        this.vid.play();
-                    }
-                } else {
-                    this.toggle = false;
-                    this.vid.pause();
-                }
-            }
-        });
-
-        function refrespage() {
-            location.reload();
-        }
-
-        function playvid() {
-            vid.play();
-        }
-    </script>
-
+    video.play();
+}
+      </script>
   </body>
 
 </html>
